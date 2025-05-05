@@ -3,8 +3,10 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'my-image'
-        CONTAINER_NAME = 'my-container
-        stages {
+        CONTAINER_NAME = 'my-container'
+    }
+
+    stages {
         stage('Clone Repository') {
             steps {
                 git url: 'https://github.com/vijayjerry/pratice3.git', branch: 'main'
@@ -22,7 +24,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    // Stop and remove old container if exists
+                    // Stop and remove old container if it exists
                     sh "docker rm -f ${CONTAINER_NAME} || true"
 
                     // Run new container
@@ -31,3 +33,5 @@ pipeline {
             }
         }
     }
+}
+
